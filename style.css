@@ -1,0 +1,110 @@
+html {
+    scroll-behavior: smooth;
+    }
+body{
+    margin: auto;
+    font-family: 'Roboto Mono', monospace;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+h1{
+    margin: auto;
+    padding-top: 3%;
+    text-align: center;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 56px;
+    background-image: url(./title.jpg);
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: 100vw;
+    height: 80vh;
+}
+.title{
+    margin: auto;
+    margin-top: 5%;
+    text-align: center;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 32px;
+}
+.table{
+    text-align: center;
+    width: 50vw;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border: 2px solid gray;
+}
+th,td{
+    border: 2px solid gray;
+}
+h2{
+    font-size: 32px;
+    text-align: center;
+}
+.engines{
+    color: white;
+    vertical-align:auto;
+    height: 25vh;
+    background-repeat: no-repeat;
+    background-image: url(./engines.jpg);
+    background-size: 100vw;
+    background-position: center;
+    padding-top: 5vh;
+    margin-bottom: 0px;
+    padding-bottom: 5vh;
+}
+.but1{
+    color: white;
+    background-color: black;
+    padding: 2px;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    border: 3px black solid;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: 1s;
+}
+.but1:hover{
+    color: whitesmoke;
+    background-color: #222222;
+    border: #222222;
+}
+.last{
+    color: white;
+    margin: 0 auto;
+    vertical-align:auto;
+    height: 25vh;
+    background-repeat: no-repeat;
+    background-image: url(./last.jpg);
+    background-size: 100vw;
+    background-position: center;
+    padding-top: 5vh;
+    margin-bottom: 0px;
+    padding-bottom: 5vh;
+}
+.galerey{
+    color: white;
+    margin: 0 auto;
+    vertical-align:auto;
+    height: 25vh;
+    background-repeat: no-repeat;
+    background-image: url(./galerey.jpg);
+    background-size: 100vw;
+    background-position: center;
+    padding-top: 5vh;
+    margin-bottom: 0px;
+    padding-bottom: 5vh;
+}
+header{
+    background-color: #222222;
+    justify-content: space-evenly;
+    display: flex;
+    color: white;
+}
+.hdr{
+    transition: 1s;
+}
+.hdr:hover{
+    color: #999;
+}
