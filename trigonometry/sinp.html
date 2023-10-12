@@ -20,9 +20,10 @@
     <noscript><div><img src="https://mc.yandex.ru/watch/95230520" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
     <script>
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
         const par = urlParams.get('p');
-        var titl = document.getElementsByTagName('title')[0];
-        titl.innerHTML = 'Синус угла ' + par + ' градусов | Онлайн калькулятор';
+        console.log(par);
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -146,22 +147,36 @@
     </style>
 </head>
 <body>
+    <script>
+        var titl = document.getElementsByTagName('title')[0];
+        if (par != null) {
+            titl.innerHTML = 'Синус угла ' + par + ' градусов | Онлайн калькулятор';
+        }
+    </script>
     <header>
         <h1>Best Equations - быстрый и простой калькулятор синуса</h1>
     </header>
-
+    <script async src="https://ad.mail.ru/static/ads-async.js"></script>
+    <ins 
+        class="mrg-tag"
+        style="display:inline-block;width:auto;height:300px"
+        data-ad-client="ad-1426417"
+        data-ad-slot="1426417">
+    </ins>
+    <script>
+        (MRGtag = window.MRGtag || []).push({});
+    </script>
     <div class="container">
         <div class="title">Вычисление синуса угла a: b = sin(a)</div>
         <div class="form">
             <div class="form-group">
                 <label class="form-label">Угол a (в градусах):</label>
-                <input class="form-input" type="text" name="a" step="any" required>
+                <input class="form-input" type="text" name="a"  step="any" required>
                 <label class="form-label">°</label>
             </div>
             
             <button class="form-button" type="submit" onclick="calculate()">Вычислить</button>
         </div>
-
         <div class="result">
             
             <div class="result-label">Ответ:</div>
@@ -171,7 +186,15 @@
             <div class="result-value" id="solution-discriminant"></div>
         </div>
     </div>
-
+    <script>
+        var hh = document.getElementsByClassName('title')[0];
+        var fi = document.getElementsByClassName('form-input')[0];
+        
+        if (par != null) {
+            hh.innerHTML = 'Вычисление синуса угла ' + par + '°: b = sin(' + par + '°)';
+            fi.value = par;
+        }
+    </script>
     <footer>
         <p>© 2023 artdevelop study. Все права защищены.</p>
     </footer>
@@ -200,9 +223,9 @@
 
         function calculate() {
             var a = parseFloat(document.querySelector('input[name="a"]').value);
+            a = par;
             b = a * Math.PI / 180;
             var answer = Math.sin(b);
-            
 
             var solutionDiscriminant = "Посчитаем синус по таблице синусов и сравним с искомым значением: sin("+a+"°) = " + answer;
             
@@ -212,6 +235,8 @@
 
             document.querySelector('.result').style.display = 'block';
         }
+        calculate();
     </script>
+    
 </body>
 </html>
