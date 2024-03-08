@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=600px, initial-scale=1.0">
+    <title>textcloud.</title>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+        integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+        ></script>
+</head>
+<body>
+    <h2><a href="/">Write</a></h2><h2><a href="/read.html">Read</a></h2>
+    <br>
+    <form method="post" id="createText">
+        <p>
+            Name: <input type="text" name="name" id="name" required />
+        </p>
+        <p>
+            Message: <textarea name="message" id="message"></textarea>
+        </p>
+        <button type="submit" name="submit">Send</button>
+    </form>
+
+    <h5 name="idt" id="idt">ID of text on server:</h5>
+    <h5 name="ida" id="ida">Link to read the text: <a name="idaa" id="idaa" href="/"></a></h5>
+    <h5>QR code for read:</h5>
+    <div id="qrcode"></div>
+    <style>
+        #qrcode {
+            width:160px;
+            height:160px;
+            margin-top:15px;
+        }
+    </style>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+        import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
+
+        // Paste the code from Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyAHcF19NcpitBNrOG-__nGRnnnlamXxDVo",
+            authDomain: "txtcloud-a8894.firebaseapp.com",
+            projectId: "txtcloud-a8894",
+            storageBucket: "txtcloud-a8894.appspot.com",
+            messagingSenderId: "982815845059",
+            appId: "1:982815845059:web:90f786db191751d39f9076",
+            databaseURL: "https://txtcloud-a8894-default-rtdb.asia-southeast1.firebasedatabase.app"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        // Get a reference to the database service
+        const db = getDatabase(app);
+
+        document.getElementById('createText').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let idd = Math.random().toString(36).slice(2, 7);
+            set(ref(db, 'texts/' + idd), {
+                name: document.getElementById('name').value,
+                message: document.getElementById('message').value
+            });
+            document.getElementById("idt").textContent="ID of text on server: "+idd;
+            document.getElementById("idaa").textContent="LINK";
+            document.getElementById("idaa").href="/read.html?id="+idd;
+            var qrcode = new QRCode("qrcode");
+            qrcode.makeCode("http://best-equations.ru/textcloud/read.html?id="+idd);
+        });
+    </script>
+</body>
+</html>

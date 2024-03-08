@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>textcloud.</title>
+</head>
+<body>
+    <h2><a href="/index.html">Write</a></h2><h2><a href="/">Read</a></h2>
+    <br>
+    <h1>Text name:</h1>
+    <h3 name="name" id="name"></h3>
+    <h1>Text:</h1>
+    <p name="txt" id="txt"></p>
+    <script type="module">
+        var urlParams = new URLSearchParams(window.location.search);
+        var idd = urlParams.get('id');
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+        import { getDatabase, ref, set, get, child, onValue } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
+        // Paste the code from Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyAHcF19NcpitBNrOG-__nGRnnnlamXxDVo",
+            authDomain: "txtcloud-a8894.firebaseapp.com",
+            projectId: "txtcloud-a8894",
+            storageBucket: "txtcloud-a8894.appspot.com",
+            messagingSenderId: "982815845059",
+            appId: "1:982815845059:web:90f786db191751d39f9076",
+            databaseURL: "https://txtcloud-a8894-default-rtdb.asia-southeast1.firebasedatabase.app"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        // Get a reference to the database service
+        const db = getDatabase(app);
+
+        const starCountRef = ref(db, 'texts/' + idd);
+        onValue(starCountRef, (snapshot) => {
+        if (snapshot.exists()) {
+            const data = snapshot.val();
+            document.getElementById("txt").textContent=data.message;
+            document.getElementById("name").textContent=data.name;
+        }
+        else {
+            alert("Incorrect ID")
+        }
+        });
+    </script>
+</body>
+</html>
